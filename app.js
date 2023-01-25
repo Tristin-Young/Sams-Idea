@@ -1,5 +1,5 @@
 
-import getPixels from '../../get-image-pixels';
+import getPixels from './node_modules/get-image-pixels/';
 
 window.onload = function() {
   // Get image input and canvas elements
@@ -43,7 +43,7 @@ window.onload = function() {
     // Convert the pixel color to a human-readable color name
     const hex = rgbToHex(r, g, b);
     colorSelected = true;
-    fetch(`https://a645-184-88-51-211.ngrok.io/search/json/?hex=${hex}`, {mode: 'no-cors'})
+    fetch(`http://localhost:8010/proxy/search/json/?hex=${hex}`)
     .then(response => response.text())
     .then(responseText => {
         try {
