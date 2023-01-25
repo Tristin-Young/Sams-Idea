@@ -6,11 +6,14 @@
 </head>
 <body>
     <h1>Color Picker</h1>
+    <p>Step 1: Choose an image locally stored on your drive</p>
     <form>
         <input type="file" id="image-input" accept="image/*">
-        <canvas id="image-canvas"></canvas>
-        <p id="color-output"></p>
     </form>
-    <script src="app.js"></script>
+    <p>Step 2: Pick a portion of the image to sample it's color</p>
+    <canvas id="image-canvas"></canvas>
+    <p id="color-output"></p>
+    <p>The color you chose was <span id="hex-output"></span></p>
+    <script type="module" src="app.js"></script>
 </body>
 </html>
