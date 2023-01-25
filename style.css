@@ -22,6 +22,16 @@ p {
     font-weight: bold;
 }
 
+.step-3 {
+    display: none;
+    animation: show-step-3 0.5s ease-in;
+}
+
+@keyframes show-step-3 {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
 #image-canvas {
     border: 1px solid #4CAF50;
     margin: 0 auto;
