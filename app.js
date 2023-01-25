@@ -1,7 +1,7 @@
-
-import getPixels from './node_modules/get-image-pixels/';
+const tinycolor = require("tinycolor2");
 
 window.onload = function() {
+
   // Get image input and canvas elements
   const imageInput = document.getElementById('image-input');
   const imageCanvas = document.getElementById('image-canvas');
@@ -17,44 +17,39 @@ window.onload = function() {
     image.src = URL.createObjectURL(imageFile);
 
     // Draw image on the canvas
-    image.onload = async () => {
+    image.onload = () => {
       imageCanvas.width = image.width;
       imageCanvas.height = image.height;
       const ctx = imageCanvas.getContext('2d');
       ctx.drawImage(image, 0, 0);
-      const pixels = await getPixels(image);
     };
   });
-  
+
   // Add event listener to the canvas
-  imageCanvas.addEventListener('click', async (e) => {
+  imageCanvas.addEventListener('click', (e) => {
     const x = e.clientX - imageCanvas.offsetLeft;
     const y = e.clientY - imageCanvas.offsetTop;
 
-    // Get the pixel information at the specified coordinates
-    const pixelIndex = (y * imageCanvas.width + x) * 4;
-    const r = pixels.data[pixelIndex];
-    const g = pixels.data[pixelIndex + 1];
-    const b = pixels.data[pixelIndex + 2];
-    const a = pixels.data[pixelIndex + 3];
+    const ctx = imageCanvas.getContext('2d');
+    const pixelData = ctx.getImageData(x, y, 1, 1).data;
 
-    console.log(`r: ${r}, g: ${g}, b: ${b}, a: ${a}`);
-  
+    const r = pixelData[0];
+    const g = pixelData[1];
+    const b = pixelData[2];
+    console.log(`r: ${r}, g: ${g}, b: ${b}`);
+    const hex = tinycolor({r, g, b}).toHexString();
+    console.log(hex);
     // Convert the pixel color to a human-readable color name
-    const hex = rgbToHex(r, g, b);
-    colorSelected = true;
-    fetch(`http://localhost:8010/proxy/search/json/?hex=${hex}`)
-    .then(response => response.text())
-    .then(responseText => {
-        try {
-            const data = JSON.parse(responseText);
-            colorOutput.innerHTML = data.name;
-        } catch (error) {
-            console.error(error);
-        }
-    });
-    document.getElementById("hex-output").innerHTML = hex;
+    const color = tinycolor(hex);
+    if (!color.isValid()) {
+        console.log("Invalid color: ", hex);
+        return;
+    }
+    const closestColor = tinycolor.mostReadable(hex, tinycolor.names);
+    if(closestColor){
+    console.log(closestColor.toName())
+    }
+    colorOutput.innerHTML = closestColor;
     document.querySelector(".step-3").style.display = "block";
   });
-  }
-  
+}

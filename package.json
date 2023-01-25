@@ -1,0 +1,25 @@
+{
+  "name": "sams-idea",
+  "version": "1.0.0",
+  "description": "sams idea",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tristin-Young/Sams-Idea.git"
+  },
+  "author": "Tristin Young",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tristin-Young/Sams-Idea/issues"
+  },
+  "homepage": "https://github.com/Tristin-Young/Sams-Idea#readme",
+  "dependencies": {
+    "color-name": "^2.0.0",
+    "get-image-pixels": "^1.0.1",
+    "local-cors-proxy": "^1.1.0",
+    "tinycolor2": "^1.5.2"
+  }
+}
