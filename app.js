@@ -28,9 +28,9 @@ window.onload = function() {
 
   // Add event listener to the canvas
   imageCanvas.addEventListener('click', (e) => {
-    const x = e.clientX - imageCanvas.offsetLeft;
-    const y = e.clientY - imageCanvas.offsetTop;
-
+    const rect = imageCanvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
     const ctx = imageCanvas.getContext('2d');
     const pixelData = ctx.getImageData(x, y, 1, 1).data;
 

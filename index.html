@@ -8,12 +8,12 @@
     <h1>Color Picker</h1>
     <p>Step 1: Choose an image locally stored on your drive</p>
     <form>
-        <input type="file" id="image-input" accept="image/*">
+        <label for="image-input" class="file-input-button"></label>
+<input type="file" id="image-input" accept="image/*" class="input-file">
     </form>
     <p>Step 2: Pick a portion of the image to sample it's color</p>
     <canvas id="image-canvas"></canvas>
-    <p class="step-3">The color you chose was <span id="color-output"></span>
-    .Here are some products in the same color.</p>
+    <p class="step-3">The color you chose was <span id="color-output"></span>. Here are some products in the same color.</p>
     <script type="text/javascript" src="https://chir.ag/projects/ntc/ntc.js"></script>
     <script type="module" src="bundle.js"></script>
 </body>
