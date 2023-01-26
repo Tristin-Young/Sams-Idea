@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/Tristin-Young/Sams-Idea#readme",
   "dependencies": {
+    "browserify": "^17.0.0",
     "color-name": "^2.0.0",
+    "colornamer": "^1.0.9",
     "get-image-pixels": "^1.0.1",
     "local-cors-proxy": "^1.1.0",
     "tinycolor2": "^1.5.2"
