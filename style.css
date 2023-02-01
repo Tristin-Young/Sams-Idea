@@ -82,6 +82,7 @@ p {
 
 body {
     background-color: #D3CEB1;
+    font-family: 'Open Sans', sans-serif;
     color: #1C1F21;
     display: flex;
     flex-direction: column;
@@ -100,22 +101,35 @@ form {
     font-size: 1.5rem;
     padding: 1rem 2rem;
     background-color: #CC5500;
-    color: #fff;
+    color: none;
     border: none;
     cursor: pointer;
     border-radius: 10px;
 }
 
-.step-3 {
+.step-3{
     font-size: 1.5rem;
-    margin-bottom: 2rem;
-    display:none;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.step-4{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.step-5 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: none;
 }
 #image-canvas {
     border: 1px solid #CC5500;
     border-radius: 10px;
     margin-bottom: 2rem;
 }
+
 input[type='file'] {
     width: 0.1px;
     height: 0.1px;
@@ -123,9 +137,9 @@ input[type='file'] {
     overflow: hidden;
     position: absolute;
     z-index: -1;
-  }
-  
-  .file-input-button {
+}
+
+.file-input-button {
     background-color: #CC5500;
     color: #fff;
     border-radius: 8px;
@@ -136,20 +150,30 @@ input[type='file'] {
     display: inline-block;
     margin-top: 24px;
     text-align: center;
-  }
-  
-  .file-input-button:hover {
+    margin-bottom: 1rem;
+}
+
+.file-input-button:hover {
     background-color: #F56600;
-  }
-  
-  .file-input-button:active {
+}
+
+.file-input-button:active {
     background-color: #1C1F21;
-  }
-  
-  .file-input-button:before {
+}
+
+.file-input-button:before {
     content: 'Choose file';
-  }
-  
-  input[type='file']:focus + .file-input-button {
+}
+
+input[type='file']:focus + .file-input-button {
     outline: 1px dotted #000;
-  }
+}
+
+label.file-input-button:before {
+    content: 'Pick Pic';
+}
+
+#pick-again-btn:before {
+    content: 'Pick Again';
+    
+}

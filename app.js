@@ -7,6 +7,8 @@ window.onload = function() {
   const imageInput = document.getElementById('image-input');
   const imageCanvas = document.getElementById('image-canvas');
   const colorOutput = document.getElementById('color-output');
+  const hexcolor = document.getElementById('hex-color');
+  const rgb_code = document.getElementById('rgb-output');
 
   // Add event listener to the image input
   imageInput.addEventListener('change', async (e) => {
@@ -25,26 +27,47 @@ window.onload = function() {
       ctx.drawImage(image, 0, 0);
     };
   });
-
+  let colorPicked=false;
   // Add event listener to the canvas
   imageCanvas.addEventListener('click', (e) => {
-    const rect = imageCanvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const ctx = imageCanvas.getContext('2d');
-    const pixelData = ctx.getImageData(x, y, 1, 1).data;
-
-    const r = pixelData[0];
-    const g = pixelData[1];
-    const b = pixelData[2];
-    console.log(`r: ${r}, g: ${g}, b: ${b}`);
-    const hex = tinycolor({r, g, b}).toHexString();
-    console.log(hex);
-    var n_match = ntc.name(hex);
-    // Convert the pixel color to a human-readable color name
-    const color = n_match[1];
-    colorOutput.innerHTML = color;
-    document.querySelector(".step-3").style.display = "block";
+    if (!colorPicked) {
+      const x = e.clientX - imageCanvas.offsetLeft;
+      const y = e.clientY - imageCanvas.offsetTop;
+  
+      const ctx = imageCanvas.getContext('2d');
+      const pixelData = ctx.getImageData(x, y, 1, 1).data;
+  
+      const r = pixelData[0];
+      const g = pixelData[1];
+      const b = pixelData[2];
+      //console.log(`r: ${r}, g: ${g}, b: ${b}`);
+      const hex = tinycolor({r, g, b}).toHexString();
+      //console.log(hex);
+      var n_match = ntc.name(hex);
+      // Convert the pixel color to a human-readable color name
+      const color = n_match[1];
+      colorOutput.innerHTML = color;
+      hexcolor.innerHTML = hex;
+      let rgbstring = ("R: "+ r + ", " + "G: "+ g + ", " + "B: "+ b);
+      rgb_code.innerHTML = rgbstring;
+      document.querySelector(".step-3").style.display = "block";
+      document.querySelector(".step-4").style.display = "block";
+      document.querySelector(".step-5").style.display = "block";
+      colorPicked = true;
+      imageCanvas.style.pointerEvents = "none";
+      document.getElementById("pick-again-btn").style.display = "block";
+    } else {
+      alert("A color has already been picked. Please press the 'Pick Again' button to select another color.");
+    }
+  });
+  
+  document.getElementById("pick-again-btn").addEventListener("click", () => {
+    colorPicked = false;
+    imageCanvas.style.pointerEvents = "auto";
+    document.getElementById("pick-again-btn").style.display = "none";
+    document.querySelector(".step-3").style.display = "none";
+    document.querySelector(".step-4").style.display = "none";
+    document.querySelector(".step-5").style.display = "none";
   });
 
   var ntc = {

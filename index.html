@@ -1,20 +1,32 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <title>Color Picker</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
     <h1>Color Picker</h1>
     <p>Step 1: Choose an image locally stored on your drive</p>
-    <form>
+    <!-- INPUT: Choose an image locally stored on your drive -->
+    <div>
         <label for="image-input" class="file-input-button"></label>
-<input type="file" id="image-input" accept="image/*" class="input-file">
-    </form>
-    <p>Step 2: Pick a portion of the image to sample it's color</p>
+        <input type="file" id="image-input" accept="image/*" style="visibility:hidden;">
+    </div>
+    <p>Step 2: Pick a portion of the image to sample its color</p>
+    <!-- OUTPUT: Pick a portion of the image to sample it's color -->
     <canvas id="image-canvas"></canvas>
-    <p class="step-3">The color you chose was <span id="color-output"></span>. Here are some products in the same color.</p>
+    <button id="pick-again-btn" class="file-input-button" style="display: none;"></button>
+    <!-- OUTPUT: The color you chose was <span id="color-output"></span> -->
+    <p class="step-3">The color you chose was <span id="color-output"></span></p>
+    <p class="step-4">Hex code: <span id="hex-color"></span></p>
+    <p class="step-5"><span id="rgb-output"></span></p>
+    <!-- SCRIPT: The color you chose was <span id="color-output"></span> -->
     <script type="text/javascript" src="https://chir.ag/projects/ntc/ntc.js"></script>
+    <!-- SCRIPT: The color you chose was <span id="color-output"></span> -->
     <script type="module" src="bundle.js"></script>
+    
 </body>
+
 </html>
